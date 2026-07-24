@@ -1,1 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K6 - Xử lý sự kiện bàn phím</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f3f3;
+        }
+        .container {
+            width: 800px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            text-align: center;
+        }
+        h1 {
+            color: #0d6efd;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        #playArea {
+            width: 700px;
+            height: 400px;
+            margin: auto;
+            border: 2px solid #333;
+            background: #fafafa;
+            position: relative;
+            overflow: hidden;
+        }
+        #box {
+            width: 60px;
+            height: 60px;
+            background: crimson;
+            position: absolute;
+            top: 170px;
+            left: 320px;
+            border-radius: 8px;
+        }
+        .back {
+            margin-top: 30px;
+        }
+        .back a {
+            text-decoration: none;
+            background: #198754;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+        }
+        .back a:hover {
+            background: #157347;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>K6 - Xử lý sự kiện bàn phím</h1>
+        <p>Sử dụng các phím <b>↑ ↓ ← →</b> để di chuyển hình vuông.</p>
+      
+        <div id="playArea">
+            <div id="box"></div>
+        </div>
+
+        <div class="back">
+            <a href="bt36.html">← Quay về Trang Chủ</a>
+        </div>
+
+    </div>
+
+    <script>
+
+        const box = document.getElementById("box");
+
+        let left = 320;
+        let topPos = 170;
+
+        const step = 10;
+
+        document.addEventListener("keydown", function (event) {
+
+            switch (event.key) {
+
+                case "ArrowUp":
+                    if (topPos > 0) {
+                        topPos -= step;
+                    }
+                    break;
+
+                case "ArrowDown":
+                    if (topPos < 340) {
+                        topPos += step;
+                    }
+                    break;
+
+                case "ArrowLeft":
+                    if (left > 0) {
+                        left -= step;
+                    }
+                    break;
+
+                case "ArrowRight":
+                    if (left < 640) {
+                        left += step;
+                    }
+                    break;
+
+                default:
+                    return;
+            }
+
+            box.style.left = left + "px";
+            box.style.top = topPos + "px";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
