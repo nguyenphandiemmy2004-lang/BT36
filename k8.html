@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K8 - Tính Chỉ Số BMI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f3f3;
+        }
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        }
+        h1 {
+            text-align: center;
+            color: #0d6efd;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0b5ed7;
+        }
+        #result {
+            margin-top: 25px;
+            padding: 15px;
+            background: #eef5ff;
+            border-radius: 6px;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1.8;
+        }
+        .back {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back a {
+            text-decoration: none;
+            background: #198754;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+        }
+        .back a:hover {
+            background: #157347;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>K8 - Tính Chỉ Số BMI</h1>
+
+        <div class="form-group">
+            <label for="weight">Cân nặng (kg)</label>
+            <input type="number" id="weight" placeholder="Ví dụ: 60">
+        </div>
+
+        <div class="form-group">
+            <label for="height">Chiều cao (m)</label>
+            <input type="number" id="height" step="0.01" placeholder="Ví dụ: 1.65">
+        </div>
+
+        <button onclick="calculateBMI()">
+            Tính BMI
+        </button>
+
+        <div id="result">
+            Nhập thông tin rồi nhấn "Tính BMI".
+        </div>
+
+        <div class="back">
+            <a href="bt36.html">← Quay về Trang Chủ</a>
+        </div>
+
+    </div>
+
+    <script>
+
+        function calculateBMI() {
+
+            const weight = parseFloat(document.getElementById("weight").value);
+            const height = parseFloat(document.getElementById("height").value);
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+
+                document.getElementById("result").innerHTML =
+                    "Vui lòng nhập cân nặng và chiều cao hợp lệ.";
+
+                return;
+            }
+
+            const bmi = weight / (height * height);
+
+            let classification = "";
+
+            if (bmi < 18.5) {
+                classification = "Thiếu cân";
+            }
+            else if (bmi < 25) {
+                classification = "Bình thường";
+            }
+            else if (bmi < 30) {
+                classification = "Thừa cân";
+            }
+            else {
+                classification = "Béo phì";
+            }
+
+            document.getElementById("result").innerHTML =
+                "<strong>Chỉ số BMI:</strong> " + bmi.toFixed(2) +
+                "<br><strong>Phân loại:</strong> " + classification;
+        }
+
+    </script>
+
+</body>
+
+</html>
