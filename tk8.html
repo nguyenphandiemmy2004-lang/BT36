@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK8 - Chuyển Hex sang RGB</title>
+    
+    <style>
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f2f2f2;
+}
+.container{
+    width:650px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+    text-align:center;
+}
+h1{
+    color:#0d6efd;
+    margin-bottom:30px;
+}
+input{
+    width:250px;
+    padding:12px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+button{
+    padding:12px 20px;
+    margin-left:10px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+button:hover{
+    background:#0b5ed7;
+}
+#result{
+    margin-top:30px;
+    font-size:24px;
+    font-weight:bold;
+    color:red;
+}
+#colorBox{
+    width:150px;
+    height:150px;
+    margin:30px auto;
+    border:2px solid #333;
+    border-radius:10px;
+    background:white;
+}
+.back{
+    margin-top:30px;
+}
+.back a{
+    text-decoration:none;
+    background:#198754;
+    color:white;
+    padding:12px 20px;
+    border-radius:6px;
+}
+.back a:hover{
+    background:#157347;
+}
+      
+    </style>
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <h1>TK8 - Chuyển Hex sang RGB</h1>
+      <p>Ví dụ: #FF5733 hoặc #00FF00</p>
+      <br>
+      
+      <input type="text" id="hex" placeholder="#FF5733">
+      <button onclick="convertColor()">Chuyển đổi</button>
+      <div id="result"></div>
+      <div id="colorBox"></div>
+      <div class="back">
+        <a href="bt36.html">← Quay về Trang Chủ</a>
+      </div>
+    </div>
+    
+    <script>
+      function convertColor(){
+        let hex=document.getElementById("hex").value.trim();
+        if(!/^#[0-9A-Fa-f]{6}$/.test(hex)){
+          alert("Vui lòng nhập đúng định dạng. Ví dụ: #FF5733");
+          return;
+        }
+        let r=parseInt(hex.substr(1,2),16);
+        let g=parseInt(hex.substr(3,2),16);
+        let b=parseInt(hex.substr(5,2),16);
+        
+        document.getElementById("result").innerHTML="RGB(" + r + ", " + g + ", " + b + ")";
+        document.getElementById("colorBox").style.background=hex;
+      }
+      
+    </script>
+    
+  </body>
+</html>
