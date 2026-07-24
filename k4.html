@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K4 - Phân Trang Danh Sách</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3f3f3;
+        }
+        .container {
+            width: 700px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        }
+        h1 {
+            text-align: center;
+            color: #0d6efd;
+            margin-bottom: 25px;
+        }
+        ul {
+            list-style: none;
+        }
+        li {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 18px;
+        }
+        .pagination {
+            margin-top: 25px;
+            text-align: center;
+        }
+        .pagination button {
+            width: 45px;
+            height: 45px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            background: #e0e0e0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .pagination button:hover {
+            background: #0d6efd;
+            color: white;
+        }
+        .pagination button.active {
+            background: #0d6efd;
+            color: white;
+        }
+        .back {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .back a {
+            text-decoration: none;
+            background: #198754;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+        }
+        .back a:hover {
+            background: #157347;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>K4 - Phân Trang Danh Sách</h1>
+
+        <ul id="list"></ul>
+
+        <div class="pagination" id="pagination"></div>
+
+        <div class="back">
+            <a href="bt36.html">← Quay về Trang Chủ</a>
+        </div>
+
+    </div>
+
+    <script>
+
+        // Tạo danh sách 50 mục
+        const data = [];
+
+        for (let i = 1; i <= 50; i++) {
+            data.push("Mục " + i);
+        }
+
+        const itemsPerPage = 10;
+
+        // Hiển thị dữ liệu theo trang
+        function showPage(page) {
+
+            const list = document.getElementById("list");
+
+            list.innerHTML = "";
+
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+
+            for (let i = start; i < end; i++) {
+
+                const li = document.createElement("li");
+                li.textContent = data[i];
+                list.appendChild(li);
+
+            }
+
+            // Đổi màu nút đang chọn
+            const buttons = document.querySelectorAll(".pagination button");
+
+            buttons.forEach(button => {
+                button.classList.remove("active");
+            });
+
+            buttons[page - 1].classList.add("active");
+
+        }
+
+        // Tạo nút phân trang
+        const pagination = document.getElementById("pagination");
+
+        for (let i = 1; i <= 5; i++) {
+
+            const button = document.createElement("button");
+
+            button.textContent = i;
+
+            button.onclick = function () {
+                showPage(i);
+            };
+
+            pagination.appendChild(button);
+
+        }
+
+        // Hiển thị trang đầu tiên
+        showPage(1);
+
+    </script>
+
+</body>
+
+</html>
