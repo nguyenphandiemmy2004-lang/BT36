@@ -1,1 +1,111 @@
-
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK5 - Accordion đơn giản</title>
+    <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+}
+.container{
+    width:700px;
+    margin:50px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+h1{
+    text-align:center;
+    color:#0d6efd;
+    margin-bottom:25px;
+}
+.accordion{
+    background:#0d6efd;
+    color:white;
+    cursor:pointer;
+    padding:15px;
+    width:100%;
+    border:none;
+    outline:none;
+    text-align:left;
+    font-size:18px;
+    margin-top:10px;
+    border-radius:5px;
+    transition:.3s;
+}
+.accordion:hover{
+    background:#0b5ed7;
+}
+.panel{
+    background:#f8f9fa;
+    overflow:hidden;
+    max-height:0;
+    transition:max-height .4s ease;
+    border-radius:0 0 5px 5px;
+}
+.panel p{
+    padding:15px;
+    line-height:1.6;
+}
+.back{
+    margin-top:30px;
+    text-align:center;
+}
+.back a{
+    text-decoration:none;
+    background:#198754;
+    color:white;
+    padding:12px 25px;
+    border-radius:5px;
+}
+.back a:hover{
+    background:#146c43;
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>TK5 - Accordion Đơn Giản</h1>
+      
+      <button class="accordion">Giới thiệu</button>
+      <div class="panel">
+        <p>Đây là nội dung phần giới thiệu. Khi nhấn vào tiêu đề, nội dung sẽ mở ra và nhấn lần nữa sẽ thu gọn lại.</p>
+      </div>
+      <button class="accordion">HTML</button>
+      <div class="panel">
+        <p>HTML là ngôn ngữ dùng để xây dựng cấu trúc của trang Web.</p>
+      </div>
+      <button class="accordion">JavaScript</button>
+      <div class="panel">
+        <p>JavaScript giúp trang Web trở nên tương tác và xử lý các sự kiện của người dùng.</p>
+      </div>
+      
+      <div class="back">
+        <a href="bt36.html">← Quay về Trang Chủ</a>
+      </div>
+    </div>
+    
+    <script>
+      let acc=document.getElementsByClassName("accordion");
+      for(let i=0;i<acc.length;i++){
+        acc[i].addEventListener("click",function(){
+          let panel=this.nextElementSibling;
+          if(panel.style.maxHeight){
+            panel.style.maxHeight=null;
+          }else{
+            panel.style.maxHeight=panel.scrollHeight+"px";
+          }
+        });
+      }
+    </script>
+    
+  </body>
+</html>
